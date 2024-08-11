@@ -39,7 +39,7 @@ export interface QAP {
 /**
  * Create a quadratic arithmetic programme from an R1CS matrix triple (A, B, C)
  */
-export function fromR1cstoQap(l: number, A: FrMatrix, B: FrMatrix, C: FrMatrix): QAP {
+export function fromR1csToQap(l: number, A: FrMatrix, B: FrMatrix, C: FrMatrix): QAP {
     const A_t = transpose(A)
     const B_t = transpose(B)
     const C_t = transpose(C)

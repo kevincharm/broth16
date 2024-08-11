@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { setup, prove, verify } from '../src/groth16'
-import { FrMatrix, fromR1cstoQap } from '../src/qap'
+import { FrMatrix, fromR1csToQap } from '../src/qap'
 import { Fr } from '@kevincharm/blstoise'
 
 function prepareMatrix(matrix: number[][]): FrMatrix {
@@ -76,7 +76,7 @@ const witness = [3, 35, 9, 27, 30].map((x) => new Fr(BigInt(x)))
 describe('groth16', () => {
     it('compute and verify proof', () => {
         const l = 1
-        const qap = fromR1cstoQap(l, R1CS.A, R1CS.B, R1CS.C)
+        const qap = fromR1csToQap(l, R1CS.A, R1CS.B, R1CS.C)
         const trustedSetup = setup(qap)
         const { proof, vk } = prove(trustedSetup, qap, witness)
 
