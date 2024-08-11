@@ -200,17 +200,17 @@ export function prove(
  */
 export function verify(proof: Proof, publicInputs: Fr[], vk: VerificationKey): boolean {
     const [A, C, BG2] = proof
-    const [alphaG1, betaG2, gammaG2, deltaG2] = [vk.alphaG1, vk.betaG2, vk.gammaG2, vk.deltaG2]
+    const { alphaG1, betaG2, gammaG2, deltaG2, cTauPublicG1 } = vk
 
     // We fix the first public input to 1 (used for constants)
     const preparedPublicInputs = [Fr.one(), ...publicInputs]
-    if (preparedPublicInputs.length !== vk.cTauPublicG1.length) {
+    if (preparedPublicInputs.length !== cTauPublicG1.length) {
         throw new Error(
-            `Invalid number of public inputs: expected ${vk.cTauPublicG1.length - 1}, got ${publicInputs.length}`,
+            `Invalid number of public inputs: expected ${cTauPublicG1.length - 1}, got ${publicInputs.length}`,
         )
     }
     // \sum_{i=0}^{l} a_i * [\frac{\beta u_i(\tau) + \alpha v_i(\tau) + w_i(\tau)}{\gamma}]_1
-    const publicInputsSumG1 = vk.cTauPublicG1
+    const publicInputsSumG1 = cTauPublicG1
         .map((p, i) => p.mul(preparedPublicInputs[i].value))
         .reduce((acc, p) => acc.add(p))
 
