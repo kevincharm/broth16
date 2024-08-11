@@ -1,0 +1,28 @@
+{
+  "name": "@kevincharm/broth16",
+  "version": "1.0.0",
+  "description": "Toy Groth16 implementation",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "prepare": "yarn tsc",
+    "test": "NODE_OPTIONS=--experimental-global-webcrypto ./node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts"
+  },
+  "author": "Kevin Charm <kevin@kevincharm.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^18",
+    "chai": "^4",
+    "mocha": "^10.6.0",
+    "prettier": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@kevincharm/blstoise": "^1.0.1"
+  }
+}
